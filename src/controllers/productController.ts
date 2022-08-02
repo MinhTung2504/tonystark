@@ -44,17 +44,20 @@ const productController = {
   },
 
   edit: async (req: Request, res: Response, next: NextFunction) => {
-    // FIXME
-    res.render('pages/product/error', {
+    const product = await Product.findAll({ where: { code: req.params.code } });
+
+    res.render('pages/product/edit', {
       message: 'not implemented',
+      product,
     });
   },
 
   update: async (req: Request, res: Response, next: NextFunction) => {
-    // FIXME
-    res.render('pages/product/error', {
-      message: 'not implemented',
-    });
+    await Product.update(req.body, { where: { code: req.params.code } });
+    // res.render('pages/product/error', {
+    //   message: 'not implemented',
+    // });
+    res.redirect('/product');
   },
 
   destroy: async (req: Request, res: Response, next: NextFunction) => {

@@ -7,8 +7,8 @@
     <%- include ('../../partials/nav') %>
     <section class="my-5">
       <div class="container">
-        <h1>ADD PRODUCT</h1>
-        <form method="POST" action="/product">
+        <h1>EDIT PRODUCT</h1>
+        <form method="POST" action="/product/<%= product[0].code %>">
           <div class="form-group">
             <label for="code">Code</label>
             <input
@@ -17,7 +17,8 @@
               id="code"
               name="code"
               placeholder="Enter product code"
-            />
+              value="<%= product[0].code %>"
+              disabled
             />
           </div>
           <div class="form-group">
@@ -28,6 +29,7 @@
               id="name"
               name="name"
               placeholder="Enter product name"
+              value="<%= product[0].name %>"
             />
           </div>
           <div class="form-group">
@@ -38,6 +40,7 @@
               id="category"
               name="category"
               placeholder="Enter product category"
+              value="<%= product[0].category %>"
             />
           </div>
           <div class="form-group">
@@ -48,6 +51,7 @@
               id="brand"
               name="brand"
               placeholder="Enter product brand"
+              value="<%= product[0].brand %>"
             />
           </div>
           <div class="form-group">
@@ -58,6 +62,7 @@
               id="type"
               name="type"
               placeholder="Enter product type"
+              value="<%= product[0].brand %>"
             />
           </div>
           <div class="form-group">
@@ -70,10 +75,12 @@
               placeholder="Enter product description"
               rows="5"
               cols="33"
-            ></textarea>
+            >
+<%= product[0].description %>
+            </textarea>
           </div>
 
-          <button type="submit" class="btn btn-primary">Add</button>
+          <button type="submit" class="btn btn-primary">Edit</button>
         </form>
       </div>
     </section>
