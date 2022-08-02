@@ -9,24 +9,25 @@
       <div class="container">
         <div class="card">
           <div class="card-header">
-            <h2 class="card-title">Error</h2>
             <a class="btn btn-info" href="/product">Back to listing</a>
-            <% if (message) { %>
+            <% if (product) { %>
+            <h2 class="card-title" style="text-decoration: underline">
+              DETAIL OF: <%= product[0].name %>
+            </h2>
+            <% }%> <% if (message) { %>
             <div class="alert alert-danger">
               <pre style="color: red"><%= message %></pre>
             </div>
+            <% } %> <% if (product) { %>
+            <h3>NAME: <%= product[0].name %></h3>
+            <h4>CATEGORY: <%= product[0].category %></h4>
+            <h4>BRAND: <%= product[0].brand %></h4>
+            <p>DESCRIPTION: <%= product[0].description %></p>
             <% } %>
-
-            <div>{}</div>
           </div>
         </div>
       </div>
     </section>
     <%- include ('../../partials/footer') %>
-    <script>
-      $(document).ready(function () {
-        $('#mnuProduct').addClass('active');
-      });
-    </script>
   </body>
 </html>

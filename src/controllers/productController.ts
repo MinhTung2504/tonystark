@@ -30,7 +30,9 @@ const productController = {
   },
 
   show: async (req: Request, res: Response, next: NextFunction) => {
-    const product = await Product.findOne(req.body.id);
+    const product = await Product.findAll({
+      where: { code: req.params.code },
+    });
     const message: string = '';
     // if (!A) {
     //   products = [];
