@@ -21,7 +21,7 @@
           </div>
           <div class="card-body">
             <% if (products.length > 0) { %>
-            <table>
+            <table style="text-align: center">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -31,7 +31,7 @@
                   <th>Brand</th>
                   <th>Type</th>
                   <th>Description</th>
-                  <th>Show</th>
+                  <th colspan="2">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -49,6 +49,19 @@
                   <td><%= products[i].type %></td>
                   <td><%= products[i].description %></td>
                   <td><a href="/product/<%= products[i].code %>">Detail</a></td>
+                  <td>
+                    <!-- <a href="/product/<%= products[i].code %>/delete">Delete</a> -->
+                    <form
+                      method="POST"
+                      action="/product/<%= products[i].code %>/delete"
+                    >
+                      <!-- Are you sure to delete this product:
+                      <strong><%= products[i].name%></strong> ? -->
+                      <button type="submit" class="btn btn-primary">
+                        Delete
+                      </button>
+                    </form>
+                  </td>
                 </tr>
                 <% } %>
               </tbody>

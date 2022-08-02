@@ -16,17 +16,19 @@ const productController = {
   },
 
   create: async (req: Request, res: Response, next: NextFunction) => {
-    // FIXME
-    res.render('pages/product/error', {
+    res.render('pages/product/add', {
       message: 'not implemented',
     });
   },
 
   store: async (req: Request, res: Response, next: NextFunction) => {
-    // FIXME
-    res.render('pages/product/error', {
-      message: 'not implemented',
-    });
+    const dataProduct = req.body;
+
+    console.log(req.body);
+
+    await Product.create(dataProduct);
+
+    res.redirect('/product');
   },
 
   show: async (req: Request, res: Response, next: NextFunction) => {
@@ -34,18 +36,11 @@ const productController = {
       where: { code: req.params.code },
     });
     const message: string = '';
-    // if (!A) {
-    //   products = [];
-    //   message = 'Fail to retrieve records.';
-    // }
+
     res.render('pages/product/detail', {
       message,
       product,
     });
-    // FIXME
-    // res.render('pages/product/error', {
-    //   message: 'not implemented',
-    // });
   },
 
   edit: async (req: Request, res: Response, next: NextFunction) => {
@@ -63,10 +58,9 @@ const productController = {
   },
 
   destroy: async (req: Request, res: Response, next: NextFunction) => {
-    // FIXME
-    res.render('pages/product/error', {
-      message: 'not implemented',
-    });
+    await Product.destroy({ where: { code: req.params.code } });
+
+    res.redirect('/product');
   },
 };
 
