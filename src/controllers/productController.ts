@@ -3,7 +3,13 @@ import { Product } from '../models/product';
 
 const productController = {
   index: async (req: Request, res: Response, next: NextFunction) => {
-    let products = await Product.findAll();
+    const page = parseInt(req.params.page) || 0;
+    const sizePage = 5;
+    const count = await Product.count();
+    let products = await Product.findAll({
+      offset: page,
+      limit: sizePage,
+    });
     let message: string = '';
     if (!Array.isArray(products)) {
       products = [];
@@ -12,6 +18,29 @@ const productController = {
     res.render('pages/product/index', {
       message,
       products,
+      current: page,
+      pages: Math.ceil(count / sizePage),
+    });
+  },
+
+  pagination: async (req: Request, res: Response, next: NextFunction) => {
+    const page = parseInt(req.params.page) || 0;
+    const sizePage = 5;
+    const count = await Product.count();
+    let products = await Product.findAll({
+      offset: page,
+      limit: sizePage,
+    });
+    let message: string = '';
+    if (!Array.isArray(products)) {
+      products = [];
+      message = 'Fail to retrieve records.';
+    }
+    res.render('pages/product/index', {
+      message,
+      products,
+      current: page,
+      pages: Math.ceil(count / sizePage),
     });
   },
 

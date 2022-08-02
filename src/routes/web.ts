@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.get('/', homeController.homePage);
 
+router.get('/product/:page', productController.pagination);
 router.get('/product', productController.index);
 router.get('/product/create', productController.create);
 router.post('/product', productController.store);
